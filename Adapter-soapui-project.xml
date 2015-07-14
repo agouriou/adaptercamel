@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="49a52b70-907b-4884-b1a7-00a88d4cb139" activeEnvironment="Default" name="Adapter" resourceRoot="" soapui-version="5.1.3" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="a8f5b43d-e400-4df8-88a6-9daf63e93dd2" wsaVersion="NONE" name="UserServiceBinding" type="wsdl" bindingName="{http://www.services.zenika.com/user}UserServiceBinding" soapVersion="1_1" anonymous="optional" definition="file:/home/armel/workspace/adapter/src/main/resources/wsdl/user.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/armel/workspace/adapter/src/main/resources/wsdl/user.wsdl"><con:part><con:url>file:/home/armel/workspace/adapter/src/main/resources/wsdl/user.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.services.zenika.com/user" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.services.zenika.com/user" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.services.zenika.com/user">
+      <xsd:include schemaLocation="user.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:service name="userService">
+    <wsdl:port name="userServicePort" binding="tns:UserServiceBinding">
+      <soap:address location="http://localhost:8080/services/user"/>
+    </wsdl:port>
+  </wsdl:service>
+  <wsdl:portType name="userEndpoint">
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUserRequest"/>
+      <wsdl:output message="tns:getUserResponse"/>
+      <wsdl:fault name="getUserException" message="tns:getUserException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <wsdl:input message="tns:getAllUsersRequest"/>
+      <wsdl:output message="tns:getAllUsersResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserServiceBinding" type="tns:userEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUser">
+      <wsdl:input>
+        <soap:body parts="getUserIn" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="getUserOut" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="getUserException">
+        <soap:fault name="getUserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUsers">
+      <wsdl:input>
+        <soap:body parts="getAllUsersIn" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="getAllUsersOut" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:message name="getUserRequest">
+    <wsdl:part name="getUserIn" element="tns:getUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getUserResponse">
+    <wsdl:part name="getUserOut" element="tns:getUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getUserException">
+    <wsdl:part name="fault" element="tns:getUserException"/>
+  </wsdl:message>
+  <wsdl:message name="getAllUsersRequest">
+    <wsdl:part name="getAllUsersIn" element="tns:getAllUsersRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getAllUsersResponse">
+    <wsdl:part name="getAllUsersOut" element="tns:getAllUsersResponse"/>
+  </wsdl:message>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/armel/workspace/adapter/src/main/resources/wsdl/user.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://www.services.zenika.com/user" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.services.zenika.com/user">
+  <element name="getUserRequest">
+    <complexType>
+      <sequence>
+        <element name="id" type="int"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getUserResponse">
+    <complexType>
+      <sequence>
+        <element name="user" type="tns:User"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getUserException" type="string"/>
+  <element name="getAllUsersRequest">
+    <complexType>
+      <sequence></sequence>
+    </complexType>
+  </element>
+  <element name="getAllUsersResponse">
+    <complexType>
+      <sequence minOccurs="0" maxOccurs="unbounded">
+        <element name="user" type="tns:User"/>
+      </sequence>
+    </complexType>
+  </element>
+  <complexType name="User">
+    <sequence>
+      <element name="id" type="int"/>
+      <element name="name" type="string"/>
+      <element name="age" type="int"/>
+      <element name="address" type="tns:Address"/>
+    </sequence>
+  </complexType>
+  <complexType name="Address">
+    <sequence>
+      <element name="street" type="string"/>
+      <element name="town" type="string"/>
+      <element name="postcode" type="int"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/user</con:endpoint></con:endpoints><con:operation id="19a759b1-3e4d-4f56-b8c9-f6e8dcbfc069" isOneWay="false" action="" name="getAllUsers" bindingOperationName="getAllUsers" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2520c6ad-073a-4912-8107-306cdb477244" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://www.services.zenika.com/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:getAllUsersRequest/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.services.zenika.com/user/userEndpoint/getAllUsersRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="744df239-1b46-4fe9-95fa-5af142a6c46e" isOneWay="false" action="" name="getUser" bindingOperationName="getUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8bc5668a-1660-493e-8770-9623ddc8ac52" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://www.services.zenika.com/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:getUserRequest>
+         <user:id>1</user:id>
+      </user:getUserRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.services.zenika.com/user/userEndpoint/getUserRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="3269aee8-9fbe-4894-8b01-8bda5f91136b" name="BasicTests"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="eeec234f-c3fd-44a9-8363-c05f6a9195f2" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetUser" searchProperties="true"><con:settings/><con:testStep type="request" name="GetUser1" id="66a515b2-53cd-414b-afd0-53a944321db4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceBinding</con:interface><con:operation>getUser</con:operation><con:request name="GetUser1" id="58ba6f39-af41-4ddd-9222-09ce0e5040cf"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://www.services.zenika.com/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:getUserRequest>
+         <user:id>1</user:id>
+      </user:getUserRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3935cb85-b7f8-4379-afb5-cb4e5f99b443"/><con:assertion type="XPath Match" id="4f35a04f-3532-4607-a6c3-4e73d4bb4404" name="XPath Match"><con:configuration><path>declare namespace a="http://www.services.zenika.com/user";
+//a:getUserResponse</path><content><![CDATA[<getUserResponse xmlns="http://www.services.zenika.com/user" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <user>
+    <id>1</id>
+    <name>toto</name>
+    <age>0</age>
+    <address>
+      <town>Rennes</town>
+      <postcode>35000</postcode>
+    </address>
+  </user>
+</getUserResponse>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="GetAllUsers" id="5fba0023-c489-4352-88d4-b865ab399823"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>UserServiceBinding</con:interface><con:operation>getAllUsers</con:operation><con:request name="GetAllUsers" id="878ba104-9ce2-41dd-afc9-a927eb6d7409"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://www.services.zenika.com/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:getAllUsersRequest/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="98409cf5-e21b-4571-9cc7-1edc8bd7e2ee"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
