@@ -1,1 +1,1 @@
-com.zenika.user.converters.UserConverter
+com.zenika.user.converters.UserToResponseConverter

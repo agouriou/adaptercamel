@@ -22,8 +22,9 @@ public class ServerRoute extends RouteBuilder {
     public void configure() throws Exception {
 
         onException(UnkownUserException.class)
-                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(404))
-                .transform(constant("KO !!!"));
+                .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(400))
+                .transform(constant("KO !!!"))
+                .handled(true);
 
 //                .exchange.getIn().setBody(new UnkownUserException("User d'id inconnu: " + id));
 //        exchange.getIn().setFault(true);

@@ -1,12 +1,15 @@
 package com.zenika.user.routes;
 
 import com.zenika.user.restservice.FlatUser;
+import com.zenika.user.soapservice.GetUserException;
 import com.zenika.user.soapservice.GetUserRequest;
 import com.zenika.user.soapservice.GetUserResponse;
+import com.zenika.user.soapservice.User;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.cxf.CxfOperationException;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.model.dataformat.JaxbDataFormat;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,17 +31,17 @@ public class GetUserRoute extends RouteBuilder {
         jsonFormat.setUnmarshalType(FlatUser.class);
 
 
-//        onException(Exception.class)
-//                .continued(true)
-//                .process(new Processor() {
-//                    @Override
-//                    public void process(Exchange exchange) throws Exception {
-//                        Object body = exchange.getIn().getBody();
-//                        Exception cause = exchange.getProperty(Exchange.EXCEPTION_CAUGHT, Exception.class);
-//                        exchange.getOut().setFault(true);
-//                        exchange.getOut().setBody(new GetUserException("Unknown user"));
-//                    }
-//                });
+        onException(CxfOperationException.class)
+                .process(new Processor() {
+                    @Override
+                    public void process(Exchange exchange) throws Exception {
+                        CxfOperationException cause = exchange.getProperty(Exchange.EXCEPTION_CAUGHT, CxfOperationException.class);
+                        if (cause.getStatusCode() == 400) {
+                            exchange.getOut().setFault(true);
+                            exchange.getOut().setBody(new GetUserException(cause.getResponseBody()));
+                        }
+                    }
+                });
 
         from("direct:routeGetUser")
                 .id("routeGetUser")
@@ -52,11 +55,10 @@ public class GetUserRoute extends RouteBuilder {
                         message.setHeader(Exchange.HTTP_PATH, "/users/" + getUserRequest.getId());
                     }
                 })
-//                .to("cxfrs:bean:restUserClient")
                 .to(endpointRestUserClient)
                 .unmarshal(jsonFormat)
+                .convertBodyTo(User.class)
                 .convertBodyTo(GetUserResponse.class)
-//                .beanRef("userTransformer", "restUserToGetUserResponse")
                 .to("direct:lastStageProcess");
     }
 }

@@ -13,18 +13,9 @@ import org.apache.camel.Converter;
 public class UserToResponseConverter {
 
     @Converter
-    public static GetUserResponse toGetUserResponse(FlatUser restUser) {
-        User soapUser = new User();
-        soapUser.setName(restUser.getName());
-        soapUser.setAge(restUser.getAge());
-        soapUser.setId(restUser.getId());
-        Address address = new Address();
-        address.setTown(restUser.getAddressTown());
-        address.setPostcode(restUser.getAddressZipCode());
-        address.setStreet(restUser.getAddressStreet());
-        soapUser.setAddress(address);
+    public static GetUserResponse toGetUserResponse(User user) {
         GetUserResponse rep = new GetUserResponse();
-        rep.setUser(soapUser);
+        rep.setUser(user);
         return rep;
     }
 }
