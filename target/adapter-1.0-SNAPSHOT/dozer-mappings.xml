@@ -1,0 +1,19 @@
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net  http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>com.zenika.user.restservice.FlatUser</class-a>
+        <class-b>com.zenika.user.soapservice.User</class-b>
+        <field>
+            <a>addressStreet</a>
+            <b>address.street</b>
+        </field>
+        <field>
+            <a>addressZipCode</a>
+            <b>address.postCode</b>
+        </field>
+        <field>
+            <a>addressTown</a>
+            <b>address.town</b>
+        </field>
+    </mapping>
+</mappings>

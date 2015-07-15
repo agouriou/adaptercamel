@@ -1,0 +1,25 @@
+Status: FAILED
+Time Taken: 129
+Size: 0
+Timestamp: Fri Jul 10 15:19:49 CEST 2015
+TestStep: GetUser1
+
+----------------- Messages ------------------------------
+org.apache.http.conn.HttpHostConnectException: Connection to http://localhost:8080 refused
+
+----------------- Properties ------------------------------
+Endpoint: http://localhost:8080/services/user
+Encoding: UTF-8
+
+---------------- Request ---------------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://www.services.zenika.com/user">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <user:getUserRequest>
+         <user:id>1</user:id>
+      </user:getUserRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+---------------- Response --------------------------
+- missing response / garbage collected -

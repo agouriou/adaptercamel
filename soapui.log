@@ -1,0 +1,15 @@
+2015-07-10 15:22:19,879 WARN  [SoapUI] Missing folder [/home/armel/workspace/adapter/ext] for external libraries
+2015-07-10 15:22:20,096 INFO  [DefaultSoapUICore] initialized soapui-settings from [/home/armel/soapui-settings.xml]
+2015-07-10 15:22:21,159 INFO  [WsdlProject] Loaded project from [file:/home/armel/workspace/adapter/Adapter-soapui-project.xml]
+2015-07-10 15:22:21,167 INFO  [SoapUITestCaseRunner] Running SoapUI tests in project [Adapter]
+2015-07-10 15:22:21,169 INFO  [SoapUITestCaseRunner] Running Project [Adapter], runType = SEQUENTIAL
+2015-07-10 15:22:21,188 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [GetUser]
+2015-07-10 15:22:21,196 INFO  [SoapUITestCaseRunner] running step [GetUser1]
+2015-07-10 15:22:22,437 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+2015-07-10 15:22:22,437 INFO  [SoapUITestCaseRunner] Assertion [XPath Match] has status VALID
+2015-07-10 15:22:22,437 INFO  [SoapUITestCaseRunner] running step [GetAllUsers]
+2015-07-10 15:22:22,510 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+2015-07-10 15:22:22,511 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [GetUser], time taken: 1302ms, status: FINISHED
+2015-07-10 15:22:22,511 INFO  [SoapUITestCaseRunner] Project [Adapter] finished with status [FINISHED] in 1334ms
+2015-07-10 15:22:22,515 INFO  [GenericApplicationContext] Closing org.springframework.context.support.GenericApplicationContext@23986957: startup date [Fri Jul 10 15:22:17 CEST 2015]; root of context hierarchy
+2015-07-10 15:22:22,664 INFO  [DefaultListableBeanFactory] Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@56f6d40b: defining beans [userTransformer,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,soapUserEndpoint,restUserClient,template,consumerTemplate,camel:beanPostProcessor,camel,restUserServer,jsonProvider,jsonListUserFormat,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
